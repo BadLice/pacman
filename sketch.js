@@ -6,10 +6,11 @@ var mapTiles=[];
 function setup()
 {
 	createCanvas(dim*xdim,dim*ydim);
-	player = new Player(450,300);
 
 	initMapTiles()
 	importMap(mapJson)
+		player = new Player(14,11);
+
 
 }
 
