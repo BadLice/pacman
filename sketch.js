@@ -45,8 +45,11 @@ function draw()
 
 	player.draw();
 	player.update();
-	
-	
+
+	textSize(20);
+	fill(255);
+	stroke(255);
+	text("Touch the edges of the screen to control pacman",10,20);
 }
 
 
