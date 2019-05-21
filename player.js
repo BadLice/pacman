@@ -212,8 +212,7 @@ class Player
 
 		if(mouseIsPressed)
 		{
-			console.log(mouseY>ydim*dim/4 && mouseY<ydim*dim/4*3)
-			if(mouseY<ydim*dim/4)
+			if(mouseY<ydim*dim/3)
 			{
 				this.nextDir=2;
 			}
@@ -223,7 +222,7 @@ class Player
 				this.nextDir=0;
 			}
 
-			if(mouseY>ydim*dim/4 && mouseY<ydim*dim/4*3)
+			if(mouseY>ydim*dim/3 && mouseY<ydim*dim/3*2)
 			{
 				if(mouseX<xdim*dim/2)
 				{
