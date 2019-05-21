@@ -193,7 +193,7 @@ class Player
 
 	control()
 	{
-		if(keyIsDown(UP_ARROW) )
+		if(keyIsDown(UP_ARROW))
 		{
 			this.nextDir=2;
 		}
@@ -208,6 +208,32 @@ class Player
 		if(keyIsDown(LEFT_ARROW))
 		{
 			this.nextDir=1;	
+		}
+
+		if(mouseIsPressed)
+		{
+			console.log(mouseY>ydim*dim/4 && mouseY<ydim*dim/4*3)
+			if(mouseY<ydim*dim/4)
+			{
+				this.nextDir=2;
+			}
+
+			if(mouseY>ydim*dim/4)
+			{
+				this.nextDir=0;
+			}
+
+			if(mouseY>ydim*dim/4 && mouseY<ydim*dim/4*3)
+			{
+				if(mouseX<xdim*dim/2)
+				{
+					this.nextDir=1;
+				}
+				else
+				{
+					this.nextDir=3;
+				}
+			}
 		}
 	}
 }
