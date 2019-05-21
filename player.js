@@ -81,7 +81,7 @@ class Player
 		textSize(72);
 		fill(255,0,0);
 		stroke(255);
-		text("GAME OVER",180,450);
+		text("GAME OVER",240,450);
 		noLoop();
 	}
 
