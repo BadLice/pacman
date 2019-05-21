@@ -2,6 +2,7 @@ var mapGame;
 var pxWidth = 5;
 var player;
 var mapTiles=[];
+var enemy;
 
 function setup()
 {
@@ -9,9 +10,12 @@ function setup()
 
 	initMapTiles()
 	importMap(mapJson)
-		player = new Player(14,11);
 
+	player = new Player(13,11);
+	blinky = new Blinky(16,3);
 
+	// pinky = new Pinky(16,28);
+	inky = new Inky(3,29);
 }
 
 function draw()
@@ -19,6 +23,16 @@ function draw()
 	background(51);
 	player.update();
 	player.draw();
+
+	blinky.update();
+	blinky.draw();
+
+	// pinky.update();
+	// pinky.draw();
+
+	inky.update();
+	inky.draw();
+
 	
 	for (var i = xdim - 1; i >= 0; i--) 
 	{

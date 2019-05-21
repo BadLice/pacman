@@ -8,13 +8,8 @@ class Player
 		this.y=0;
 		this.width = dim;
 		this.col = color(255,255,0);
-		this.direction = 3;
+		this.direction = -1;
 		this.nextDir = -1;
-
-		this.maxRight=width;
-		this.maxLeft=0;
-		this.maxUp=0;
-		this.maxDown=height;
 
 		this.timex = millis();
 		this.timeLease = .2; //in seconds
@@ -38,7 +33,6 @@ class Player
 	update()
 	{
 		this.control();
-		this.tileCollision();
 		this.move();
 		this.eat();
 
@@ -149,64 +143,5 @@ class Player
 		{
 			this.nextDir=1;	
 		}
-	}
-
-	tileCollision()
-	{
-		var currRigthMax = width;
-		var currLeftMax = 0;
-		var currUpMax = 0;
-		var currDownMax = height;
-
-		for (var i = xdim - 1; i >= 0; i--)
-		{
-			for(var j = ydim - 1; j >= 0; j--)
-			{		
-				if(mapTiles[i][j] instanceof WallTile)
-				{
-					if((this.y >= mapTiles[i][j].y && this.y <= mapTiles[i][j].y+mapTiles[i][j].w)
-					|| (this.y+this.width >= mapTiles[i][j].y && this.y+this.width <= mapTiles[i][j].y+mapTiles[i][j].w))
-						{
-							if(mapTiles[i][j].x>=this.x)
-							{
-								//rigth collision max
-								if(mapTiles[i][j].x<currRigthMax)
-								 	currRigthMax = mapTiles[i][j].x;
-							}
-							else
-							{
-								//left collision max
-								if(mapTiles[i][j].x>currLeftMax)
-									currLeftMax = mapTiles[i][j].x+mapTiles[i][j].w;
-							}
-						}
-
-					if((this.x >= mapTiles[i][j].x && this.x <= mapTiles[i][j].x+mapTiles[i][j].w) 
-					|| this.x+this.width >= mapTiles[i][j].x && this.x+this.width <= mapTiles[i][j].x+mapTiles[i][j].w)
-					{
-						if(mapTiles[i][j].y<=this.y)
-						{
-							//up collision max
-							if(mapTiles[i][j].y>currUpMax)
-								currUpMax = mapTiles[i][j].y+mapTiles[i][j].w;
-
-						}
-						else
-						{
-							//down collision max
-							if(mapTiles[i][j].y<currDownMax)
-								currDownMax = mapTiles[i][j].y
-
-						}
-					}
-				}
-				
-			}
-		}
-
-		this.maxRight = currRigthMax;
-		this.maxLeft =  currLeftMax;
-		this.maxUp = currUpMax;
-		this.maxDown = currDownMax;
 	}
 }
