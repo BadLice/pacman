@@ -30,8 +30,6 @@ function draw()
 		}
 	}
 
-	player.update();
-	player.draw();
 
 	blinky.update();
 	blinky.draw();
@@ -45,6 +43,8 @@ function draw()
 	clyde.update();
 	clyde.draw();
 
+	player.draw();
+	player.update();
 	
 	
 }

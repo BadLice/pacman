@@ -32,17 +32,83 @@ class Player
 
 	update()
 	{
+		this.die();
+		this.win();
 		this.control();
 		this.move();
 		this.eat();
+	}
 
+	win()
+	{
+		var wins = true;
+		for (var i = xdim - 1; i >= 0 && wins; i--)
+		{
+
+			for (var j = ydim- 1; j >= 0 && wins; j--)
+			{
+				if(mapTiles[i][j] instanceof FoodTile && !mapTiles[i][j].eaten)
+					wins = false;
+			}
+		}
+
+		if(wins)
+		{
+			textSize(72);
+			fill(0,255,0);
+			stroke(255);
+			text("YOU WON!!",250,450);
+			noLoop();
+		}
+
+	}
+
+	die()
+	{
+
+		if(this.tx == blinky.tx && this.ty == blinky.ty && !blinky.scatterMode && !blinky.dead)
+			this.gameOver();
+		if(this.tx == pinky.tx && this.ty == pinky.ty && !pinky.scatterMode && !pinky.dead)
+			this.gameOver();
+		if(this.tx == inky.tx && this.ty == inky.ty && !inky.scatterMode && !inky.dead)
+			this.gameOver();
+		if(this.tx == clyde.tx && this.ty == clyde.ty && !clyde.scatterMode && !clyde.dead)
+			this.gameOver();
+	}
+
+	gameOver()
+	{
+		textSize(72);
+		fill(255,0,0);
+		stroke(255);
+		text("GAME OVER",180,450);
+		noLoop();
 	}
 
 	eat()
 	{
+		if(mapTiles[this.tx][this.ty] instanceof PillowTile)
+		{
+			if(!mapTiles[this.tx][this.ty].eaten)
+			{
+				inky.scatterMode=true;
+				blinky.scatterMode=true;
+				clyde.scatterMode=true;
+				pinky.scatterMode=true;
+			}	
+		}
 		if(mapTiles[this.tx][this.ty] instanceof FoodTile)
 			if(mapTiles[this.tx][this.ty].eaten == false)
 				mapTiles[this.tx][this.ty].eaten = true;
+
+		if(this.tx == blinky.tx && this.ty == blinky.ty && blinky.scatterMode)
+			blinky.die();
+		if(this.tx == pinky.tx && this.ty == pinky.ty && pinky.scatterMode)
+			pinky.die();
+		if(this.tx == inky.tx && this.ty == inky.ty && inky.scatterMode)
+			inky.die();
+		if(this.tx == clyde.tx && this.ty == clyde.ty && clyde.scatterMode)
+			clyde.die();
 
 	}
 

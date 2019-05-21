@@ -19,29 +19,27 @@ function importMap(importValue)
 
 		for (var j = ydim- 1; j >= 0; j--)
 		{
-			
-				switch(temp[i][j].type)
-				{
-					case 0:
-						mapTiles[i][j] = new EmptyTile(temp[i][j].x,temp[i][j].y)
-						break;
-					case 1:
-						mapTiles[i][j] = new WallTile(temp[i][j].x,temp[i][j].y);
-						break;
-					case 2:
-						mapTiles[i][j] = new FoodTile(temp[i][j].x,temp[i][j].y);
-						break;
-					case 3:
-						mapTiles[i][j] = new PillowTile(temp[i][j].x,temp[i][j].y);
-						break;
-					case 4:
-						mapTiles[i][j] = new DoorTile(temp[i][j].x,temp[i][j].y);
-						break;
-					default:
-						mapTiles[i][j] = new EmptyTile(i*dim,j*dim)
+			switch(temp[i][j].type)
+			{
+				case 0:
+					mapTiles[i][j] = new EmptyTile(temp[i][j].x,temp[i][j].y)
+					break;
+				case 1:
+					mapTiles[i][j] = new WallTile(temp[i][j].x,temp[i][j].y);
+					break;
+				case 2:
+					mapTiles[i][j] = new FoodTile(temp[i][j].x,temp[i][j].y);
+					break;
+				case 3:
+					mapTiles[i][j] = new PillowTile(temp[i][j].x,temp[i][j].y);
+					break;
+				case 4:
+					mapTiles[i][j] = new DoorTile(temp[i][j].x,temp[i][j].y);
+					break;
+				default:
+					mapTiles[i][j] = new EmptyTile(i*dim,j*dim)
 
-				}
-			
+			}
 		}
 			
 	}
