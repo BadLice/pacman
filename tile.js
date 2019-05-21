@@ -20,6 +20,12 @@ class EmptyTile //type 0
 			&& mouseY>= this.y && mouseY < this.y+this.w && mouseIsPressed);
 
 	}
+
+	isPointInto(x,y)
+	{
+		return (x>this.x && x<=this.x+this.w
+			&& y>= this.y && y < this.y+this.w);
+	}
 }
 
 class FoodTile extends EmptyTile //type 2
@@ -90,6 +96,23 @@ class WallTile extends EmptyTile //type 1
 	{
 		fill(this.col);
 		stroke(0)
+		rect(this.x,this.y,this.w,this.w);
+	}
+}
+
+class DoorTile extends WallTile //type 4
+{
+	constructor(x,y)
+	{
+		super(x,y);
+		this.col = color(200);
+		this.type = 4;
+	}
+
+	draw()
+	{
+		fill(this.col);
+		noStroke();
 		rect(this.x,this.y,this.w,this.w);
 	}
 }

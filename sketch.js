@@ -11,29 +11,17 @@ function setup()
 	initMapTiles()
 	importMap(mapJson)
 
-	player = new Player(13,11);
-	blinky = new Blinky(16,3);
+	player = new Player(14,24);
 
-	// pinky = new Pinky(16,28);
-	inky = new Inky(3,29);
+	blinky = new Blinky(14,11);
+	pinky = new Pinky(16,15);
+	inky = new Inky(14,15);
+	clyde = new Clyde(12,15);
 }
 
 function draw()
 {
 	background(51);
-	player.update();
-	player.draw();
-
-	blinky.update();
-	blinky.draw();
-
-	// pinky.update();
-	// pinky.draw();
-
-	inky.update();
-	inky.draw();
-
-	
 	for (var i = xdim - 1; i >= 0; i--) 
 	{
 		for (var j = ydim- 1; j >= 0; j--) 
@@ -41,6 +29,24 @@ function draw()
 			mapTiles[i][j].draw();
 		}
 	}
+
+	player.update();
+	player.draw();
+
+	blinky.update();
+	blinky.draw();
+
+	pinky.update();
+	pinky.draw();
+
+	inky.update();
+	inky.draw();
+
+	clyde.update();
+	clyde.draw();
+
+	
+	
 }
 
 

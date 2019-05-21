@@ -27,7 +27,7 @@ class Player
 	{
 		fill(this.col);
 		noStroke();
-		rect(this.x,this.y,this.width,this.width);
+		ellipse(this.x+this.width/2,this.y+this.width/2,this.width,this.width);
 	}
 
 	update()

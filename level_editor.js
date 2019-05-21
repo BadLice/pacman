@@ -2,6 +2,7 @@ var mapTiles=[];
 var precI=-1
 var precJ=-1
 var currentType = 0;
+var typeNumbers = 5;
 
 function setup()
 {
@@ -35,7 +36,7 @@ function draw()
 	if(keyIsDown(84)) //press 'T'
 	{
 		currentType++;
-		console.log('type: '+currentType%4)
+		console.log('type: '+currentType%typeNumbers)
 	}
 }
 
@@ -57,7 +58,7 @@ function mouseControl()
 		precPressed = false
 	}
 
-	switch(currentType % 4)
+	switch(currentType % typeNumbers)
 	{
 		case 1:
 		case 0:
@@ -116,6 +117,24 @@ function mouseControl()
 						}
 					}
 				}
+			break;
+
+		case 4:
+			for (var i = xdim- 1; i >= 0; i--)
+			{
+				for (var j = ydim - 1; j >= 0; j--)
+				{
+					if(mapTiles[i][j].mouseControl())
+					{
+						if(mapTiles[i][j].type == 4)
+							mapTiles[i][j] = new EmptyTile(mapTiles[i][j].x,mapTiles[i][j].y)
+						else
+							mapTiles[i][j] = new DoorTile(mapTiles[i][j].x,mapTiles[i][j].y)
+
+
+					}
+				}
+			}
 			break;
 	}
 
