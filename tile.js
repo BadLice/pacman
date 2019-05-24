@@ -95,7 +95,7 @@ class WallTile extends EmptyTile //type 1
 	draw()
 	{
 		fill(this.col);
-		stroke(0)
+		noStroke();
 		rect(this.x,this.y,this.w,this.w);
 	}
 }

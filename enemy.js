@@ -115,7 +115,7 @@ class Enemy
 	deadMode()
 	{
 		this.target = new Node(this.startPos.tx,this.startPos.ty);
-		this.col = color(0);
+		this.col = color(100);
 		if (this.tx == this.startPos.tx && this.ty == this.startPos.ty)
 		{
 			this.disableScatterMode();

@@ -21,7 +21,7 @@ function setup()
 
 function draw()
 {
-	background(51);
+	background(0);
 	for (var i = xdim - 1; i >= 0; i--) 
 	{
 		for (var j = ydim- 1; j >= 0; j--) 
