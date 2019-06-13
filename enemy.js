@@ -47,17 +47,17 @@ class Enemy
 		strokeWeight(1);
 
 		// print path
-		for (var i = this.path.length - 1; i >= 0; i--)
-		{
-			stroke(0);
-			fill(this.col);
-			rect(this.path[i].tx*dim,this.path[i].ty*dim,15,15);
+		// for (var i = this.path.length - 1; i >= 0; i--)
+		// {
+		// 	stroke(0);
+		// 	fill(this.col);
+		// 	rect(this.path[i].tx*dim,this.path[i].ty*dim,15,15);
 
 
-			// fill(255);
-			// textSize(20);
-			// text(this.path[i].Fcost,this.path[i].tx*dim,this.path[i].ty*dim+15)
-		}
+		// 	// fill(255);
+		// 	// textSize(20);
+		// 	// text(this.path[i].Fcost,this.path[i].tx*dim,this.path[i].ty*dim+15)
+		// }
 	}
 
 	update()

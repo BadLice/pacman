@@ -66,14 +66,14 @@ class Player
 	die()
 	{
 
-		// if(this.tx == blinky.tx && this.ty == blinky.ty && !blinky.scatterMode && !blinky.dead)
-		// 	this.gameOver();
-		// if(this.tx == pinky.tx && this.ty == pinky.ty && !pinky.scatterMode && !pinky.dead)
-		// 	this.gameOver();
-		// if(this.tx == inky.tx && this.ty == inky.ty && !inky.scatterMode && !inky.dead)
-		// 	this.gameOver();
-		// if(this.tx == clyde.tx && this.ty == clyde.ty && !clyde.scatterMode && !clyde.dead)
-		// 	this.gameOver();
+		if(this.tx == blinky.tx && this.ty == blinky.ty && !blinky.scatterMode && !blinky.dead)
+			this.gameOver();
+		if(this.tx == pinky.tx && this.ty == pinky.ty && !pinky.scatterMode && !pinky.dead)
+			this.gameOver();
+		if(this.tx == inky.tx && this.ty == inky.ty && !inky.scatterMode && !inky.dead)
+			this.gameOver();
+		if(this.tx == clyde.tx && this.ty == clyde.ty && !clyde.scatterMode && !clyde.dead)
+			this.gameOver();
 	}
 
 	gameOver()
