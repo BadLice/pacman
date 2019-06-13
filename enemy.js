@@ -20,6 +20,7 @@ class Enemy
 		this.scatterTarget = new Node(0,0);
 		this.scatterMode = false;
 		this.scatterTime = 0;
+		this.timeLeaseDoubled = false;
 		this.scatterTimeLease = 10; //in seconds
 
 		this.updateTarget();
@@ -45,17 +46,18 @@ class Enemy
 
 		strokeWeight(1);
 
-		//print path
-		// for (var i = this.path.length - 1; i >= 0; i--)
-		// {
-		// 	stroke(0);
-		// 	fill(this.col);
-		// 	rect(this.scatterTarget.tx*dim,this.scatterTarget.ty*dim,15,15);
+		// print path
+		for (var i = this.path.length - 1; i >= 0; i--)
+		{
+			stroke(0);
+			fill(this.col);
+			rect(this.path[i].tx*dim,this.path[i].ty*dim,15,15);
 
-		// 	// fill(255);
-		// 	// textSize(20);
-		// 	// text(this.path[i].Fcost,this.path[i].tx*dim,this.path[i].ty*dim+15)
-		// }
+
+			// fill(255);
+			// textSize(20);
+			// text(this.path[i].Fcost,this.path[i].tx*dim,this.path[i].ty*dim+15)
+		}
 	}
 
 	update()
@@ -133,6 +135,21 @@ class Enemy
 
 	move()
 	{
+
+		if(this.path.length!==0)
+		{	
+			if(this.path[this.path.length-1].ty == 15 && (this.path[this.path.length-1].tx <=6 || this.path[this.path.length-1].tx >= 23))
+			{
+				this.timeLeaseDoubled = true;
+				this.timeLease *= 1.4;
+			}
+			else if(this.timeLeaseDoubled)
+			{
+				this.timeLeaseDoubled = false;
+				this.timeLease /= 1.4;
+			}
+		}
+
 		if(millis()-this.timex > this.timeLease*1000)
 		{
 			if(this.path.length!==0)
@@ -283,9 +300,39 @@ class Enemy
 							
 						}
 					}
-				}
-				
+				}	
 			}
+
+			// cosidering also portals as neighbours
+			var nig = null;
+
+			if(current.tx == 0 && current.ty == 15)
+				nig = new Node(29,current.ty,current);
+
+			if(current.tx == 29 && current.ty == 15)
+				nig = new Node(0,current.ty,current);
+			if(nig !== null)
+			{
+				if(mapTiles[nig.tx][nig.ty].type != 1 && !this.isInSet(closed,nig.tx,nig.ty))//neighbor is not a wall and it's not in closed
+				{
+					var tentative_Gscore = current.Gscore + dist(current.tx,current.ty,nig.tx,nig.ty)
+					if(!this.isInSet(open,nig.tx,nig.ty))
+					{
+						open.push(nig);
+					}
+					else
+					{
+						if(tentative_Gscore < nig.Gscore)
+						{
+							nig.cameFrom = current;
+							nig.Gscore = tentative_Gscore;
+							nig.heuristic(this.target);
+						}
+
+					}
+				}
+			}
+			
 
 		} while(open.length !=0)//reached end
 	}
